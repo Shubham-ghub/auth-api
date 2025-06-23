@@ -70,7 +70,16 @@ const loginUser = async (req, res) => {
     throw new Error('Invalid Credentials');
   }
 };
+// get All user
+const allUser = async (req , res) =>{
+  const user  = await User.find()
 
+  if(!user){
+    res.status(404)
+    throw new Error('No User Find')
+  }
+  res.status(json)
+}
 // Generate JWT Token
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -78,4 +87,4 @@ const generateToken = (id) => {
   });
 };
 
-module.exports = { registerUser, loginUser };
+module.exports = { registerUser, loginUser , allUser };
