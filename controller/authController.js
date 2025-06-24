@@ -78,7 +78,7 @@ const allUser = async (req , res) =>{
     res.status(404)
     throw new Error('No User Find')
   }
-  res.status(json)
+  res.status(201).json(allUser)
 }
 // Generate JWT Token
 const generateToken = (id) => {
