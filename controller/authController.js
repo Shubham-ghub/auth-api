@@ -18,7 +18,7 @@ const registerUser = async (req, res) => {
 
   // Check if user already exists
   const emailExist = await User.findOne({ email });
-  if (!emailExist) {
+  if (emailExist) {
     res.status(400);
     throw new Error('User Already Exist !!');
   }
@@ -78,7 +78,7 @@ const allUser = async (req , res) =>{
     res.status(404)
     throw new Error('No User Find')
   }
-  res.status(201).json(allUser)
+  res.status(200).json(user)
 }
 // Generate JWT Token
 const generateToken = (id) => {
