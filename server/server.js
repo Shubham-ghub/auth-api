@@ -8,10 +8,17 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // ✅ Enable CORS BEFORE routes
-app.use(cors({
-  origin: 'http://localhost:5173', // 👈 or '*' for public APIs
-  credentials: true,
-}));
+const cors = require("cors");
+
+const corsOptions = {
+  origin: "http://localhost:5173",
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
+};
+
+app.use(cors(corsOptions));
+
 
 // DB Config
 connectDB();
